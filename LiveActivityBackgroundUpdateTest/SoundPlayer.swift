@@ -18,6 +18,7 @@ class SoundPlayer: NSObject {
     var soundPath: String { Bundle.main.path(forResource: "sound", ofType: "m4a")! }
     var soundURL: URL { URL(fileURLWithPath: soundPath) }
     
+    var soundTimer: Timer?
     var timer: Timer?
     
     var value = 0
@@ -47,8 +48,14 @@ class SoundPlayer: NSObject {
             print(error)
         }
         
+        soundTimer = Timer(timeInterval: 30, repeats: true, block: { [weak self] (timer) in
+            guard let self = self else { return }
+            self.testSoundPlayer.play()
+        })
+        RunLoop.main.add(soundTimer!, forMode: .common)
         
-        timer = Timer(timeInterval: 6, repeats: true, block: { [weak self] (timer) in
+        
+        timer = Timer(timeInterval: 1, repeats: true, block: { [weak self] (timer) in
             guard let self = self else { return }
             
             self.value += 1
@@ -56,11 +63,9 @@ class SoundPlayer: NSObject {
             Task { @MainActor in
                 let activity = Activity<TestAttributes>.activities.first
                 await activity?.update(using: state)
-                self.testSoundPlayer.play()
             }
         })
         
         RunLoop.main.add(timer!, forMode: .common)
-        timer?.fire()
     }
 }
