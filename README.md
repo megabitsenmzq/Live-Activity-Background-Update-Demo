@@ -11,4 +11,4 @@ While in the background, Live Activity can only be refreshed when you are using 
 
 It does not make any sense. But it works!
 
-The only downside is, in every 30 seconds, there will be 5 seconds it won't refresh. Because the background task only lasts 30 seconds. It should last infinitely long. (Still testing. I'm not sure.)
+The only downside is, in every 30 seconds, there will be 5 seconds it won't refresh. Because the background task only lasts 30 seconds.
