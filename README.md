@@ -1,4 +1,4 @@
-# Live Activity Background Update Demo
+# Live Activity Background Update Demo (Seems not work in iOS 18)
 A demo about how to refresh Live Activity with the "sound" background mode.
 
 ## The Basics
